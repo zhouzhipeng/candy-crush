@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb2op60f6re6p"]
+
+[ext_resource type="Texture2D" uid="uid://c3gp78x6cqhxe" path="res://icon.svg" id="1_cj82p"]
+[ext_resource type="Script" path="res://candy.gd" id="2_phws0"]
+[ext_resource type="Script" path="res://addons/draggablesprite2d/src/draggablesprite2d.gd" id="3_wqgqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg7yh"]
+size = Vector2(129, 131)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Candy" type="Area2D" parent="."]
+script = ExtResource("2_phws0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Candy"]
+position = Vector2(236, 86)
+shape = SubResource("RectangleShape2D_jg7yh")
+
+[node name="Icon" type="Sprite2D" parent="Candy"]
+position = Vector2(63, 64)
+texture = ExtResource("1_cj82p")
+
+[node name="DraggableSprite2D" type="Area2D" parent="."]
+position = Vector2(237, 85)
+script = ExtResource("3_wqgqi")
+texture = ExtResource("1_cj82p")
+
+[node name="Player" type="Player" parent="."]
+position = Vector2(464, 187)
+texture = ExtResource("1_cj82p")
+
+[connection signal="input_event" from="Candy" to="Candy" method="_on_input_event"]
