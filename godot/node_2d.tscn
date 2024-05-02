@@ -9,8 +9,9 @@ size = Vector2(129, 131)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Candy" type="Area2D" parent="."]
+[node name="Candy" type="Area2D" parent="." node_paths=PackedStringArray("p")]
 script = ExtResource("2_phws0")
+p = NodePath("../Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Candy"]
 position = Vector2(236, 86)
@@ -25,8 +26,10 @@ position = Vector2(237, 85)
 script = ExtResource("3_wqgqi")
 texture = ExtResource("1_cj82p")
 
-[node name="Player" type="Player" parent="."]
+[node name="Player" type="Player" parent="." node_paths=PackedStringArray("candy")]
+candy = NodePath("../Candy/Icon")
 position = Vector2(464, 187)
 texture = ExtResource("1_cj82p")
 
 [connection signal="input_event" from="Candy" to="Candy" method="_on_input_event"]
+[connection signal="speed_increased" from="Player" to="Candy" method="_on_player_speed_increased"]
